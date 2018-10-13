@@ -8,6 +8,8 @@ LIBFT = libft/libft.a
 SRC_PATH = srcs/
 SRC_NAME =	main.c \
 			error.c \
+			ft_echo.c \
+			ft_exit.c \
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 

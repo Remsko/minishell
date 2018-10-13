@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:18:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/11 16:32:29 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/12 11:44:57 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@
 # define ERROR_MALLOC "Error while trying to malloc\n"
 # define ERROR_COMMAND "Error command not found: "
 
+# define FLAG_N 0x1
+
 typedef struct  s_shell
 {
     char        **env;
-    char        *cmd;
+    char        *cmdline;
     int         end;
 }               t_shell;
 
 void    print_error(const char *error);
 void    malloc_error(void);
 void    command_error(const char *arg);
+int     ft_echo(const char **args);
 
 #endif
