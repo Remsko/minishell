@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:20:33 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/14 18:42:24 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/14 19:18:18 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,6 +289,34 @@ char    **env_copy(char **env)
     return (new_env);
 }
 
+char    *triple_join(char *begin, char *middle, char *end)
+{
+    char    *join;
+    int     len1;
+    int     len2;
+    int     len3;
+
+    len1 = ft_strlen(begin);
+    len2 = ft_strlen(middle);
+    len3 = ft_strlen(end);
+    if ((join = (char *)malloc(sizeof(char) * (len1 + len2 + len3 + 1))) == NULL)
+        malloc_error();
+    ft_memcpy(join, begin, len1);
+    ft_memcpy(join + len1, middle, len2);
+    ft_memcpy(join + len1 + len2, end, len3);
+    join[len1 + len2 + len3] = '\0';
+    ft_strdel(&begin);
+    ft_strdel(&middle);
+    ft_strdel(&end);
+    return (join);
+}
+
+void    sandr_expansions(char **cmd_ptr)
+{
+    ft_strdel(cmd_ptr);
+    *cmd_ptr = triple_join(ft_strdup("echo "), ft_strdup("/Users/rpinoit"), ft_strdup(" poulet"));
+}
+
 int     main(int argc, char **argv, char **env)
 {
     t_shell *shell;
@@ -303,7 +331,7 @@ int     main(int argc, char **argv, char **env)
         shell->cmdline = read_cmdline(&shell->end);
         if (shell->end == 1)
             break ;
-        //sandr_expansions(&shell->cmdline);
+        sandr_expansions(&shell->cmdline);
         execute_cmdline(shell->cmdline);
         clear_shell(shell);
     }
