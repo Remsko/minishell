@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:20:33 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/13 21:39:56 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/14 18:42:24 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,13 @@ void    clear_shell(t_shell *shell)
     ft_strdel(&shell->cmdline);
 }
 
-char    *ft_getenv(char *var)
+void    free_shell(t_shell *shell)
+{
+    ft_deltab(shell->env, 0);
+    ft_memdel((void **)&shell);
+}
+
+char    *env_search(char *var)
 {
     char    **env;
     int     len;
@@ -67,9 +73,8 @@ char    *ft_getenv(char *var)
     env = shell_singletone()->env;
     while (env[i] != NULL)
     {
-        /* forbidden function */
-        if (strncmp(env[i], var, len) == 0)
-            return (env[i] + len);
+        if (ft_strncmp(env[i], var, len) == 0)
+            return (env[i] + len + 1);
         ++i;
     }
     return (NULL);
@@ -80,7 +85,7 @@ int    execute_builtin(const char **args)
     if (ft_strcmp(args[0], "echo") == 0)
         return (ft_echo(args));
     else if (ft_strcmp(args[0], "cd") == 0)
-        return (1);
+        return (ft_cd(args));
     else if (ft_strcmp(args[0], "setenv") == 0)
         return (1);
     else if (ft_strcmp(args[0], "unsetenv") == 0)
@@ -119,11 +124,12 @@ char    *search_bin_path(const char *env_path, const char *bin)
     char        *path;
     int         i;
 
-    i = 0;
     if (env_path == NULL || bin == NULL)
         return (NULL);
+    ft_bzero(&st, sizeof(struct stat));
     if (stat(bin, &st) != 1 && S_ISREG(st.st_mode))
-        return (ft_strdup(bin));
+            return (ft_strdup(bin));
+    i = 0;
     all = ft_strsplit(env_path, ':');
     while (all[i] != NULL)
     {
@@ -146,14 +152,14 @@ int     execute_binary(const char **args)
     char    *bin_path;
     pid_t   forkid;
 
-    env_path = ft_getenv("PATH=\0");
+    env_path = env_search("PATH=");
     bin_path = search_bin_path(env_path, args[0]);
     if (bin_path == NULL)
         return (0);
     forkid = fork();
     if (forkid > 0)
     {
-        //wait(0);
+        wait(0);
         ft_strdel(&bin_path);
     }
     else if (forkid == 0)
@@ -177,6 +183,25 @@ void    handle_cmd(char *cmd)
     else
         command_error(args[0]);
     ft_deltab(args, 0);
+}
+
+char    *get_dollar_value(char *str)
+{
+    char    *val;
+    int     i;
+
+    i = 0;
+    if (str == NULL || *str != '$')
+        return (NULL);
+    ++str;
+    while (str[i] != '\0' && ft_isspace(str[i]) == 0)
+        ++i;
+    if ((val = (char *)malloc(sizeof(char) * (i + 2))) == NULL)
+        malloc_error();
+    ft_memcpy(val, str, i);
+    val[i] = '=';
+    val[i + 1] = '\0';
+    return (val);
 }
 
 void    execute_cmdline(char *cmdline)
@@ -214,8 +239,7 @@ void    env_rm(char *var, int var_len)
     j = 0;
     while (tmp_env[i] != NULL)
     {
-        /* forbidden function */
-        if (strncmp(tmp_env[i], var, var_len) == 0)
+        if (ft_strncmp(tmp_env[i], var, var_len) == 0)
             ;
         else
             new_env[j] = tmp_env[i];
@@ -279,10 +303,11 @@ int     main(int argc, char **argv, char **env)
         shell->cmdline = read_cmdline(&shell->end);
         if (shell->end == 1)
             break ;
+        //sandr_expansions(&shell->cmdline);
         execute_cmdline(shell->cmdline);
         clear_shell(shell);
     }
-    ft_deltab(shell->env, 0);
-    ft_memdel((void **)&shell);
+    free_shell(shell);
+    write(1, "\n", 1);
     return (0);
 }

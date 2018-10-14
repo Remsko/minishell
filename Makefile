@@ -10,6 +10,7 @@ SRC_NAME =	main.c \
 			error.c \
 			ft_echo.c \
 			ft_exit.c \
+			ft_cd.c \
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 
@@ -30,7 +31,7 @@ $(LIBFT):
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
 
-$(NAME): $(LIBBUF) $(LIBLST) $(LIBFT) $(OBJ_PATH) $(OBJ)
+$(NAME): $(LIBFT) $(OBJ_PATH) $(OBJ)
 	$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS)  -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c

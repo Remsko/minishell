@@ -6,14 +6,20 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 13:47:06 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/12 13:49:23 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/14 18:40:42 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int     ft_cd(char **args)
+int     ft_cd(const char **args)
 {
-    (void)args;
+    while (++(*args) != NULL)
+    {
+        if (ft_strcmp(*args, "-") == 0)
+            ;
+        else
+            break ;
+    }
     return (1);
 }

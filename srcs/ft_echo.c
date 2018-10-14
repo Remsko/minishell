@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 11:06:23 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/13 21:22:59 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/14 09:41:04 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int             ft_echo(const char **args)
 {
     unsigned char flags;
 
+    flags = 0;
     while (*(++args) != NULL)
     {
         if (ft_strcmp(*args, "-n") == 0)
