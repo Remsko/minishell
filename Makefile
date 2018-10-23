@@ -8,9 +8,17 @@ LIBFT = libft/libft.a
 SRC_PATH = srcs/
 SRC_NAME =	main.c \
 			error.c \
-			ft_echo.c \
-			ft_exit.c \
-			ft_cd.c \
+			builtins/ft_echo.c \
+			builtins/ft_exit.c \
+			builtins/ft_cd.c \
+			execution/execute_cmdline.c \
+			execution/execute_builtins.c \
+			execution/execute_binaries.c \
+			env/env_copy.c \
+			env/env_search.c \
+			shell/shell_free.c \
+			shell/shell_clear.c \
+			shell/shell_singletone.c \
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 
@@ -30,6 +38,10 @@ $(LIBFT):
 
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
+	mkdir -p $(OBJ_PATH)/builtins
+	mkdir -p $(OBJ_PATH)/execution
+	mkdir -p $(OBJ_PATH)/env
+	mkdir -p $(OBJ_PATH)/shell
 
 $(NAME): $(LIBFT) $(OBJ_PATH) $(OBJ)
 	$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS)  -o $(NAME)

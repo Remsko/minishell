@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   env_copy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/11 14:14:02 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 14:13:36 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/10/23 13:41:30 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/10/23 13:41:48 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    print_error(const char *error)
+char    **env_copy(char **env)
 {
-    //int *error;
+    char    **new_env;
+    int     tab_len;
+    int     i;
 
-    int *shell_error = &shell_singletone()->error;
-    *shell_error = 1;
-    ft_putstr(error);
-}
-
-void    malloc_error(void)
-{
-    print_error(ERROR_MALLOC);
-    exit(EXIT_FAILURE);
-}
-
-void    command_error(const char *arg)
-{
-    print_error(ERROR_COMMAND);
-    ft_putendl(arg);
+    tab_len = ft_tablen(env);
+    if ((new_env = (char **)malloc(sizeof(char *) * (tab_len + 1))) == NULL)
+        malloc_error();
+    i = 0;
+    while (i < tab_len)
+    {
+        new_env[i] = ft_strdup(env[i]);
+        ++i;
+    }
+    new_env[i] = NULL;
+    return (new_env);
 }

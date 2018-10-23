@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   env_search.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/11 14:14:02 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 14:13:36 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/10/23 13:41:23 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/10/23 13:43:14 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    print_error(const char *error)
+char *env_search(char *var)
 {
-    //int *error;
+    char **env;
+    int len;
+    int i;
 
-    int *shell_error = &shell_singletone()->error;
-    *shell_error = 1;
-    ft_putstr(error);
-}
-
-void    malloc_error(void)
-{
-    print_error(ERROR_MALLOC);
-    exit(EXIT_FAILURE);
-}
-
-void    command_error(const char *arg)
-{
-    print_error(ERROR_COMMAND);
-    ft_putendl(arg);
+    i = 0;
+    len = ft_strlen(var);
+    env = shell_singletone()->env;
+    while (env[i] != NULL)
+    {
+        if (ft_strncmp(env[i], var, len) == 0)
+            return (env[i] + len + 1);
+        ++i;
+    }
+    return (NULL);
 }

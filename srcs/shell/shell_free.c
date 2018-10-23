@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   shell_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/11 14:14:02 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 14:13:36 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/10/23 13:49:15 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/10/23 13:51:27 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    print_error(const char *error)
+void    shell_free(t_shell *shell)
 {
-    //int *error;
-
-    int *shell_error = &shell_singletone()->error;
-    *shell_error = 1;
-    ft_putstr(error);
-}
-
-void    malloc_error(void)
-{
-    print_error(ERROR_MALLOC);
-    exit(EXIT_FAILURE);
-}
-
-void    command_error(const char *arg)
-{
-    print_error(ERROR_COMMAND);
-    ft_putendl(arg);
+    ft_deltab(shell->env, 0);
+    ft_memdel((void **)&shell);
 }
