@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:20:33 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/14 19:18:18 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/19 16:35:47 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ t_shell *shell_singletone(void)
     return (shell);
 }
 
-char    *read_cmdline(int *end)
+void    read_cmdline(char **line, int *end)
 {
-    char    *line;
     int     ret;
 
-    while ((ret = get_next_line(0, &line)) != 1)
+    while ((ret = get_next_line(0, line)) != 1)
     {
         if (ret == -1)
         {
@@ -43,7 +42,6 @@ char    *read_cmdline(int *end)
             break ;
         }
     }
-    return (line);
 }
 
 void    display_prompt()
@@ -311,31 +309,31 @@ char    *triple_join(char *begin, char *middle, char *end)
     return (join);
 }
 
-void    sandr_expansions(char **cmd_ptr)
+char    *sandr_expansions(char *cmdline)
 {
-    ft_strdel(cmd_ptr);
-    *cmd_ptr = triple_join(ft_strdup("echo "), ft_strdup("/Users/rpinoit"), ft_strdup(" poulet"));
+    ft_strdel(&cmdline);
+    return (triple_join(ft_strdup("echo "), ft_strdup("/Users/rpinoit"), ft_strdup(" poulet")));
 }
 
-int     main(int argc, char **argv, char **env)
+int     main(void)
 {
     t_shell *shell;
+    char    *line;
 
-    (void)argc;
-    (void)argv;
+	extern char **environ;
     shell = shell_singletone();
-    shell->env = env_copy(env);
+    shell->env = env_copy(environ);
     while (shell->end == 0)
     {
         display_prompt();
-        shell->cmdline = read_cmdline(&shell->end);
+        read_cmdline(&line, &shell->end);
         if (shell->end == 1)
             break ;
-        sandr_expansions(&shell->cmdline);
+        shell->cmdline = line;
         execute_cmdline(shell->cmdline);
         clear_shell(shell);
     }
     free_shell(shell);
-    write(1, "\n", 1);
+    ft_putendl("");
     return (0);
 }
