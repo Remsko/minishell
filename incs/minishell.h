@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:18:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 14:17:10 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/23 22:29:57 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 # include "libft.h"
 # include <unistd.h>
-//# include <stdio.h>
 
 # define ERROR_READ "Error while reading the prompt\n"
 # define ERROR_MALLOC "Error while trying to malloc\n"
-# define ERROR_COMMAND "Error command not found: "
+# define ERROR_COMMAND "Error minishell: command not found: "
+# define ERROR_GETCWD "Error cd: fail to get the absolute path\n"
+# define ERROR_PERMISSION "Error cd: permission denied: "
+# define ERROR_DIRECTORY "Error cd: no such file or directory: "
+# define ERROR_ANY "Error cd: not a directory: "
 
 # define FLAG_N 0x1
 
