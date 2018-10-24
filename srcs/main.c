@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:20:33 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/24 14:06:14 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/24 17:13:27 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,6 @@ int main(void)
 
     shell = shell_singletone();
     shell->env = env_copy(environ);
-    ft_print_words_tables(shell->env);
     while (shell->end == 0)
     {
         display_prompt(shell->error);

@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:34:35 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 13:39:14 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/24 17:20:58 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int execute_binaries(const char **args)
         return (0);
     if ((bin_path = search_bin_path(env_path, args[0])) == NULL)
         return (0);
+    ft_putendl(bin_path);
     forkid = fork();
     if (forkid > 0)
     {
@@ -78,7 +79,7 @@ int execute_binaries(const char **args)
     }
     else if (forkid == 0)
     {
-        execve(bin_path, (char **)args, NULL);
+        execve(bin_path, (char **)args, shell_singletone()->env);
     }
     return (1);
 }
