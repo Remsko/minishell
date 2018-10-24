@@ -11,6 +11,7 @@ SRC_NAME =	main.c \
 			builtins/ft_echo.c \
 			builtins/ft_exit.c \
 			builtins/ft_cd.c \
+			builtins/ft_unsetenv.c \
 			execution/execute_cmdline.c \
 			execution/execute_builtins.c \
 			execution/execute_binaries.c \

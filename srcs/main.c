@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:20:33 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/24 13:16:42 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/24 14:06:14 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,36 +126,6 @@ char *get_dollar_value(char *str)
     return (val);
 }
 
-void env_rm(char *var, int var_len)
-{
-    char ***env;
-    char **tmp_env;
-    char **new_env;
-    int len;
-    int i;
-    int j;
-
-    env = &shell_singletone()->env;
-    tmp_env = *env;
-    len = ft_tablen(tmp_env);
-    if ((new_env = (char **)malloc(sizeof(char *) * (len - 1))) == NULL)
-        malloc_error();
-    i = 0;
-    j = 0;
-    while (tmp_env[i] != NULL)
-    {
-        if (ft_strncmp(tmp_env[i], var, var_len) == 0)
-            ;
-        else
-            new_env[j] = tmp_env[i];
-        j++;
-        i++;
-    }
-    new_env[len - 1] = NULL;
-    ft_deltab(tmp_env, 0);
-    env = &new_env;
-}
-
 void env_add(char *new_var)
 {
     char ***env;
@@ -211,6 +181,7 @@ int main(void)
 
     shell = shell_singletone();
     shell->env = env_copy(environ);
+    ft_print_words_tables(shell->env);
     while (shell->end == 0)
     {
         display_prompt(shell->error);

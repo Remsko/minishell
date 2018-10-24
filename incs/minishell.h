@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:18:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 22:29:57 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/24 13:59:54 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define ERROR_PERMISSION "Error cd: permission denied: "
 # define ERROR_DIRECTORY "Error cd: no such file or directory: "
 # define ERROR_ANY "Error cd: not a directory: "
+# define ERROR_ARG "Error unsetenv: not enough arguments\n"
 
 # define FLAG_N 0x1
 
@@ -49,6 +50,7 @@ int     execute_binaries(const char **args);
 int     ft_exit(void);
 int     ft_echo(const char **args);
 int     ft_cd(const char **args);
+int     ft_unsetenv(const char **args);
 
 char    **env_copy(char **env);
 char    *env_search(char *var);

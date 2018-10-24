@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:41:30 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 13:41:48 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/24 14:08:02 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,12 @@ char    **env_copy(char **env)
 {
     char    **new_env;
     int     tab_len;
-    int     i;
 
     tab_len = ft_tablen(env);
     if ((new_env = (char **)malloc(sizeof(char *) * (tab_len + 1))) == NULL)
         malloc_error();
-    i = 0;
-    while (i < tab_len)
-    {
-        new_env[i] = ft_strdup(env[i]);
-        ++i;
-    }
-    new_env[i] = NULL;
+    new_env[tab_len] = NULL;
+    while (tab_len-- > 0)
+        new_env[tab_len] = ft_strdup(env[tab_len]);
     return (new_env);
 }
