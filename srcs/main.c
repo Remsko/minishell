@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:20:33 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/24 17:13:27 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/24 22:18:52 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,24 +126,6 @@ char *get_dollar_value(char *str)
     return (val);
 }
 
-void env_add(char *new_var)
-{
-    char ***env;
-    char **tmp_env;
-    char **new_env;
-    int len;
-
-    env = &shell_singletone()->env;
-    tmp_env = *env;
-    len = ft_tablen(tmp_env);
-    if ((new_env = (char **)malloc(sizeof(char *) * (len + 1))) == NULL)
-        malloc_error();
-    ft_memcpy((void *)new_env, (void *)tmp_env, sizeof(char *) * (len - 1));
-    new_env[len - 1] = new_var;
-    new_env[len] = NULL;
-    ft_deltab(tmp_env, 0);
-    env = &new_env;
-}
 
 char *triple_join(char *begin, char *middle, char *end)
 {

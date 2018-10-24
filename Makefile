@@ -12,11 +12,14 @@ SRC_NAME =	main.c \
 			builtins/ft_exit.c \
 			builtins/ft_cd.c \
 			builtins/ft_unsetenv.c \
+			builtins/ft_setenv.c \
+			builtins/ft_env.c \
 			execution/execute_cmdline.c \
 			execution/execute_builtins.c \
 			execution/execute_binaries.c \
 			env/env_copy.c \
 			env/env_search.c \
+			env/env_change.c \
 			shell/shell_free.c \
 			shell/shell_clear.c \
 			shell/shell_singletone.c \

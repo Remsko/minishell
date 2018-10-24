@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:34:35 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/24 17:20:58 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/24 22:15:29 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int execute_binaries(const char **args)
     forkid = fork();
     if (forkid > 0)
     {
-        wait(0);
+        //wait(0);
         ft_strdel(&bin_path);
     }
     else if (forkid == 0)

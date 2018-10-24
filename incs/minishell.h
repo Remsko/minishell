@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:18:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/24 13:59:54 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/24 22:45:16 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ int     ft_exit(void);
 int     ft_echo(const char **args);
 int     ft_cd(const char **args);
 int     ft_unsetenv(const char **args);
+int     ft_setenv(const char **args);
+int     ft_env(const char **args);
 
 char    **env_copy(char **env);
 char    *env_search(char *var);
+void    env_change(char **new, char *var);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 13:47:06 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 22:36:31 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/24 22:15:05 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void change_directory(const char *target)
     if ((cwd = getcwd(path, 256)) == NULL)
         return (print_error(ERROR_GETCWD));
     if (chdir(target) == 0)
-        /*ft_setenv("OLDPWD", cwd)*/;
+        ft_setenv((const char *[2]){"OLDPWD", cwd});
     else
     {
         if (access(target, F_OK) == -1)
