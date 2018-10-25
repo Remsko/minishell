@@ -6,13 +6,13 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 11:50:32 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/25 11:51:16 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 11:56:48 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void display_branch(int fd, char *buf)
+static void display_branch(int fd, char *buf)
 {
     int ret;
 

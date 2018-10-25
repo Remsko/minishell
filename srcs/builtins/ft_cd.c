@@ -6,13 +6,13 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 13:47:06 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/24 22:15:05 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 13:59:11 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void change_directory(const char *target)
+static void change_directory(const char *target)
 {
     char path[256 + 1];
     char *cwd;
@@ -20,7 +20,7 @@ void change_directory(const char *target)
     if ((cwd = getcwd(path, 256)) == NULL)
         return (print_error(ERROR_GETCWD));
     if (chdir(target) == 0)
-        ft_setenv((const char *[2]){"OLDPWD", cwd});
+        ft_setenv((const char *[3]){NULL, "OLDPWD", cwd});
     else
     {
         if (access(target, F_OK) == -1)
@@ -41,9 +41,10 @@ int ft_cd(const char **args)
         change_directory(env_search("HOME="));
     else if (ft_strcmp(args[1], "-") == 0)
     {
-        old = env_search("OLDPWD=");
+        old = ft_strdup(env_search("OLDPWD="));
         change_directory(old);
         ft_putendl(old);
+        ft_strdel(&old);
     }
     else if (ft_strcmp(args[1], "--") == 0)
         change_directory(env_search("HOME="));

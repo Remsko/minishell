@@ -28,6 +28,7 @@ SRC_NAME =	main.c \
 			display/display_prompt.c \
 			display/display_path.c \
 			display/display_git.c \
+			expansion/expansion_sandr.c \
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 
@@ -47,11 +48,12 @@ $(LIBFT):
 
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
-	mkdir -p $(OBJ_PATH)/builtins
-	mkdir -p $(OBJ_PATH)/execution
-	mkdir -p $(OBJ_PATH)/env
-	mkdir -p $(OBJ_PATH)/shell
-	mkdir -p $(OBJ_PATH)/display
+	mkdir -p $(OBJ_PATH)builtins
+	mkdir -p $(OBJ_PATH)execution
+	mkdir -p $(OBJ_PATH)env
+	mkdir -p $(OBJ_PATH)shell
+	mkdir -p $(OBJ_PATH)display
+	mkdir -p $(OBJ_PATH)expansion
 
 $(NAME): $(LIBFT) $(OBJ_PATH) $(OBJ)
 	$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS)  -o $(NAME)

@@ -6,13 +6,13 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:27:10 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 13:40:27 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 11:56:16 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void     handle_cmd(char *cmd)
+static void     handle_cmd(char *cmd)
 {
     const char **args;
 

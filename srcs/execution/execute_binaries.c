@@ -6,13 +6,13 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:34:35 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/25 11:37:46 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 11:56:36 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *new_path(const char *start, const char *end)
+static char *new_path(const char *start, const char *end)
 {
     char *new;
     char *ret;
@@ -31,7 +31,7 @@ char *new_path(const char *start, const char *end)
     return (ret);
 }
 
-char *search_bin_path(const char *env_path, const char *bin)
+static char *search_bin_path(const char *env_path, const char *bin)
 {
     struct stat st;
     char **all;

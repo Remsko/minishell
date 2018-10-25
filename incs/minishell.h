@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:18:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/25 11:54:33 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 12:31:57 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define MINISHELL_H
 
 #include "libft.h"
+#include    <stdio.h>
 
 #define ERROR_READ "Error while reading the prompt\n"
 #define ERROR_MALLOC "Error while trying to malloc\n"
@@ -63,5 +64,7 @@ void env_rm(char *var, int var_len);
 void display_prompt(int error);
 void display_git(char *cwd);
 void display_path(char *cwd);
+
+char    *expansion_sandr(char *cmdline);
 
 #endif
