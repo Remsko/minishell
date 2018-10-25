@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:34:35 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/25 14:39:09 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 15:21:44 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,12 @@ static char	*search_bin_path(const char *env_path, const char *bin)
 	char		*path;
 	int			i;
 
-	if (env_path == NULL || bin == NULL)
-		return (NULL);
 	ft_bzero(&st, sizeof(struct stat));
 	if (stat(bin, &st) != 1 && S_ISREG(st.st_mode))
 		return (ft_strdup(bin));
 	i = 0;
 	all = ft_strsplit(env_path, ':');
-	while (all[i] != NULL)
+	while (all != NULL && all[i] != NULL)
 	{
 		path = new_path(all[i], bin);
 		if (stat(path, &st) != 1 && S_ISREG(st.st_mode))
@@ -67,8 +65,7 @@ int			execute_binaries(const char **args)
 	char	*bin_path;
 	pid_t	forkid;
 
-	if ((env_path = env_search("PATH=")) == NULL)
-		return (0);
+	env_path = env_search("PATH=");
 	if ((bin_path = search_bin_path(env_path, args[0])) == NULL)
 		return (0);
 	if (access(bin_path, X_OK) == -1)
