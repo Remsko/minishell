@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 14:14:02 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 14:13:36 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 11:34:45 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void    print_error(const char *error)
 {
-    //int *error;
-
-    int *shell_error = &shell_singletone()->error;
+    int *shell_error;
+    
+    shell_error = &shell_singletone()->error;
     *shell_error = 1;
     ft_putstr(error);
 }

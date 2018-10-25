@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:18:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/25 11:27:17 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 11:36:12 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ERROR_DIRECTORY "Error cd: no such file or directory: "
 # define ERROR_ANY "Error cd: not a directory: "
 # define ERROR_ARG "Error unsetenv: not enough arguments\n"
+# define ERROR_EXECUTION "Error: permission denied\n"
 
 # define FLAG_N 0x1
 
