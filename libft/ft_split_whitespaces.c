@@ -6,13 +6,13 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 15:53:00 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/11 15:55:21 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 14:07:51 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int     ft_count_words2(char const *s)
+int		ft_count_words2(char const *s)
 {
 	int count;
 	int get_count;

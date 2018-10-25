@@ -6,13 +6,13 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:49:23 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 14:17:47 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 14:43:11 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    shell_clear(t_shell *shell)
+void	shell_clear(t_shell *shell)
 {
-    ft_strdel(&shell->cmdline);
+	ft_strdel(&shell->cmdline);
 }

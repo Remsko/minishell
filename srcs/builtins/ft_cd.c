@@ -6,49 +6,49 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 13:47:06 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/25 13:59:11 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 14:33:17 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void change_directory(const char *target)
+static void	change_directory(const char *target)
 {
-    char path[256 + 1];
-    char *cwd;
+	char path[256 + 1];
+	char *cwd;
 
-    if ((cwd = getcwd(path, 256)) == NULL)
-        return (print_error(ERROR_GETCWD));
-    if (chdir(target) == 0)
-        ft_setenv((const char *[3]){NULL, "OLDPWD", cwd});
-    else
-    {
-        if (access(target, F_OK) == -1)
-            print_error(ERROR_DIRECTORY);
-        else if (access(target, R_OK) == -1)
-            print_error(ERROR_PERMISSION);
-        else
-            print_error(ERROR_ANY);
-        ft_putendl(target);
-    }
+	if ((cwd = getcwd(path, 256)) == NULL)
+		return (print_error(ERROR_GETCWD));
+	if (chdir(target) == 0)
+		ft_setenv((const char *[3]){NULL, "OLDPWD", cwd});
+	else
+	{
+		if (access(target, F_OK) == -1)
+			print_error(ERROR_DIRECTORY);
+		else if (access(target, R_OK) == -1)
+			print_error(ERROR_PERMISSION);
+		else
+			print_error(ERROR_ANY);
+		ft_putendl(target);
+	}
 }
 
-int ft_cd(const char **args)
+int			ft_cd(const char **args)
 {
-    char *old;
+	char *old;
 
-    if (args[1] == NULL)
-        change_directory(env_search("HOME="));
-    else if (ft_strcmp(args[1], "-") == 0)
-    {
-        old = ft_strdup(env_search("OLDPWD="));
-        change_directory(old);
-        ft_putendl(old);
-        ft_strdel(&old);
-    }
-    else if (ft_strcmp(args[1], "--") == 0)
-        change_directory(env_search("HOME="));
-    else
-        change_directory(args[1]);
-    return (1);
+	if (args[1] == NULL)
+		change_directory(env_search("HOME="));
+	else if (ft_strcmp(args[1], "-") == 0)
+	{
+		old = ft_strdup(env_search("OLDPWD="));
+		change_directory(old);
+		ft_putendl(old);
+		ft_strdel(&old);
+	}
+	else if (ft_strcmp(args[1], "--") == 0)
+		change_directory(env_search("HOME="));
+	else
+		change_directory(args[1]);
+	return (1);
 }

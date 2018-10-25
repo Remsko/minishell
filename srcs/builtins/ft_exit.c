@@ -6,13 +6,13 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 21:03:03 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/13 21:03:47 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 14:34:18 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_exit(void)
+int	ft_exit(void)
 {
-    exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }

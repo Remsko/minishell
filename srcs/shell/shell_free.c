@@ -6,14 +6,14 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:49:15 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/23 13:51:27 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 14:43:12 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    shell_free(t_shell *shell)
+void	shell_free(t_shell *shell)
 {
-    ft_deltab(shell->env, 0);
-    ft_memdel((void **)&shell);
+	ft_deltab(shell->env, 0);
+	ft_memdel((void **)&shell);
 }
