@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:34:35 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/25 11:35:03 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 11:37:46 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int execute_binaries(const char **args)
         print_error(ERROR_EXECUTION);
         return (1);
     }
-    ft_putendl(bin_path);
     forkid = fork();
     if (forkid > 0)
     {

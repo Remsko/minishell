@@ -25,6 +25,9 @@ SRC_NAME =	main.c \
 			shell/shell_free.c \
 			shell/shell_clear.c \
 			shell/shell_singletone.c \
+			display/display_prompt.c \
+			display/display_path.c \
+			display/display_git.c \
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 
@@ -48,6 +51,7 @@ $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)/execution
 	mkdir -p $(OBJ_PATH)/env
 	mkdir -p $(OBJ_PATH)/shell
+	mkdir -p $(OBJ_PATH)/display
 
 $(NAME): $(LIBFT) $(OBJ_PATH) $(OBJ)
 	$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS)  -o $(NAME)
