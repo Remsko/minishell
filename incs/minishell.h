@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 13:18:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/24 22:45:16 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 11:27:17 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ int     ft_env(const char **args);
 char    **env_copy(char **env);
 char    *env_search(char *var);
 void    env_change(char **new, char *var);
+void    env_add(char **var);
+void    env_rm(char *var, int var_len);
 
 #endif

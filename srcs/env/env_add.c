@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*   env_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/24 13:38:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/25 11:28:07 by rpinoit          ###   ########.fr       */
+/*   Created: 2018/10/25 11:25:51 by rpinoit           #+#    #+#             */
+/*   Updated: 2018/10/25 11:25:59 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_unsetenv(const char **args)
+void env_add(char **var)
 {
-    char *var;
-    char *tmp;
+    t_shell *shell;
+    char **new_env;
+    int len;
 
-    if (args[1] == NULL)
-        print_error(ERROR_ARG);
-    else
-    {
-        while (*(++args) != NULL)
-        {
-            tmp = ft_strdup(*args);
-            var = ft_strjoin(tmp, "=");
-            if (env_search(var) != NULL)
-                env_rm(var, ft_strlen(var));
-            ft_strdel(&tmp);
-            ft_strdel(&var);
-        }
-    }
-    return (1);
+    shell = shell_singletone();
+    len = ft_tablen(shell->env);
+    if ((new_env = (char **)malloc(sizeof(char *) * (len + 2))) == NULL)
+        malloc_error();
+    new_env[len + 1] = NULL;
+    new_env[len] = *var;
+    while (len-- > 0)
+        new_env[len] = shell->env[len];
+    ft_memdel((void **)&shell->env);
+    shell->env = new_env;
 }

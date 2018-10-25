@@ -20,6 +20,8 @@ SRC_NAME =	main.c \
 			env/env_copy.c \
 			env/env_search.c \
 			env/env_change.c \
+			env/env_add.c \
+			env/env_rm.c \
 			shell/shell_free.c \
 			shell/shell_clear.c \
 			shell/shell_singletone.c \
