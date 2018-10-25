@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:34:35 by rpinoit           #+#    #+#             */
-/*   Updated: 2018/10/25 15:21:44 by rpinoit          ###   ########.fr       */
+/*   Updated: 2018/10/25 15:39:13 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ static char	*search_bin_path(const char *env_path, const char *bin)
 	ft_bzero(&st, sizeof(struct stat));
 	if (stat(bin, &st) != 1 && S_ISREG(st.st_mode))
 		return (ft_strdup(bin));
+	if (env_path == NULL)
+		return (NULL);
 	i = 0;
 	all = ft_strsplit(env_path, ':');
-	while (all != NULL && all[i] != NULL)
+	while (all[i] != NULL)
 	{
 		path = new_path(all[i], bin);
 		if (stat(path, &st) != 1 && S_ISREG(st.st_mode))
